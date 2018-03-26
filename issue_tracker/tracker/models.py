@@ -69,7 +69,7 @@ class Issue(models.Model):
 	state 			= models.CharField(max_length=1, choices=STATES, default=UNASSIGNED)
 
 	def __str__(self):
-		return "%s - %s" % (self.category.name, self.name)
+		return "[%s] %s" % (self.category.name, self.name)
 
 	def get_fastest():
 		return min_time(Issue.objects.exclude(date_finished=None))

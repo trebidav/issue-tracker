@@ -20,7 +20,7 @@ def mark_as_done(modeladmin, request, queryset):
 mark_as_done.short_description = "Done"
 
 class IssueAdmin(admin.ModelAdmin):
-	list_display = ['name', 'author', 'assignee', 'date_created', 'date_finished', 'state']
+	list_display = ['__str__', 'author', 'assignee', 'date_created', 'date_finished', 'state']
 	list_filter = ['state']
 	ordering = ['-date_created']
 	actions = [assign_to_me, start_progress, mark_as_done]
@@ -45,7 +45,7 @@ class IssueAdmin(admin.ModelAdmin):
 		extra_context['fastest_time'] = (fastest.date_finished - fastest.date_created).seconds
 		extra_context['slowest'] = slowest
 		extra_context['slowest_time'] = (slowest.date_finished - slowest.date_created).seconds
-		extra_context['average_time'] = str(Issue.get_average())
+		extra_context['average_time'] = int(Issue.get_average())
 
 		return super(IssueAdmin, self).changelist_view(request, extra_context=extra_context)
 
