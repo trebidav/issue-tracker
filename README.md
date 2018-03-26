@@ -2,7 +2,9 @@
 
 `cd issue_tracker/`
 
-`docker run -p 8001:8000 -d project`
+`docker build -t issue-tracker .`
+
+`docker run -p 8001:8000 -d issue-tracker`
 
 `open http://localhost:8001/admin`
 
